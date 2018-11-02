@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Table(name = "reshipis")
 @NamedQueries({
     @NamedQuery(
-            name = "getAllReshipi",
+            name = "getAllReshipis",
             query = "SELECT r FROM Reshipi AS r ORDER BY r.id DESC"
             ),
     @NamedQuery(
