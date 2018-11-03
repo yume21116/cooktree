@@ -40,7 +40,10 @@ public class EditServlet extends HttpServlet {
 
 		request.setAttribute("reshipi",r);
 		request.setAttribute("_token", request.getSession().getId());
-		request.getSession().setAttribute("reshipi_id", r.getId());
+
+		if(r != null){
+		    request.getSession().setAttribute("reshipi_id", r.getId());
+		}
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reshipis/edit.jsp");
 		rd.forward(request, response);

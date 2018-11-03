@@ -3,19 +3,25 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="../layout/app.jsp">
      <c:param name="content">
+       <c:choose>
+         <c:when test="${reshipi != null}">
           <% request.setCharacterEncoding("UTF-8"); %>
 
 
 
           <h2><c:out value="${reshipi.name}" /></h2>
+
           <p>作り方<br />
           <c:out value="${reshipi.content}" /></p>
           <p>作成日時 :<fmt:formatDate value="${reshipi.created_at}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
 
           <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p><br /><br />
           <p><a href="${pageContext.request.contextPath}/edit?id=${reshipi.id}">編集する</a></p>
-
-
+         </c:when>
+        <c:otherwise>
+            <h2>お探しのデータは見つかりませんでした</h2>
+        </c:otherwise>
+       </c:choose>
      </c:param>
 </c:import>
 
