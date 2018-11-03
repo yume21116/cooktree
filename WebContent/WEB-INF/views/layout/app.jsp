@@ -10,7 +10,7 @@
               <div id="header">
               </div>
                   <h1>CookTree</h1>
-                  <p id="new"><a href="${pageContext.request.contextPath}/nre">新規レシピの投稿</a></p>
+                  <p id="new"><a href="${pageContext.request.contextPath}/new">新規レシピの投稿</a></p>
 
               <div id="content">
                   ${param.content}

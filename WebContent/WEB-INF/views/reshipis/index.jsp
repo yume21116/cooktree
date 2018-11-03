@@ -6,7 +6,7 @@
 
          <c:forEach var="reshipi" items="${reshipis}">
             <a href="${pageContext.request.contextPath}/show?id=${reshipi.id}">
-               <c:out value="${reshipi.name}" />
+               <c:out value="${reshipi.name}" /><br />
             </a>
          </c:forEach>
      </c:param>
