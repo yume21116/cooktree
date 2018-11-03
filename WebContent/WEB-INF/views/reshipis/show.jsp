@@ -12,7 +12,9 @@
           <c:out value="${reshipi.content}" /></p>
           <p>作成日時 :<fmt:formatDate value="${reshipi.created_at}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
 
-          <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
+          <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p><br /><br />
+          <p><a href="${pageContext.request.contextPath}/edit?id=${reshipi.id}">編集する</a></p>
+
 
      </c:param>
 </c:import>
