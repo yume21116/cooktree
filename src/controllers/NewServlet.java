@@ -34,6 +34,8 @@ public class NewServlet extends HttpServlet {
 	 request.setAttribute("_token", request.getSession().getId());
 	 request.setAttribute("reshipi", new Reshipi());
 
+
+
 	 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reshipis/new.jsp");
 	 rd.forward(request, response);
 	}

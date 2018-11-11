@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Picture;
 import models.Reshipi;
 import utils.DBUtil;
 
@@ -37,11 +38,15 @@ public class IndexServlet extends HttpServlet {
 
     List<Reshipi> reshipis = em.createNamedQuery("getAllReshipis",Reshipi.class)
                              .getResultList();
+    List<Picture> pictures = em.createNamedQuery("getAllPictures",Picture.class)
+                             .getResultList();
     response.getWriter().append(Integer.valueOf(reshipis.size()).toString());
+    response.getWriter().append(Integer.valueOf(pictures.size()).toString());
 
     em.close();
 
     request.setAttribute("reshipis", reshipis);
+    request.setAttribute("pictures", pictures);
 
     RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reshipis/index.jsp");
     rd.forward(request,response);

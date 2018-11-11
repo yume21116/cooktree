@@ -3,6 +3,7 @@
 	<persistence-unit name="CookTree" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>models.Reshipi</class>
+		<class>models.Picture</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/CookTree?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>

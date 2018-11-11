@@ -8,20 +8,30 @@
           <% request.setCharacterEncoding("UTF-8"); %>
 
 
-
-          <h2><c:out value="${reshipi.name}" /></h2>
-
+         <body>
+          <h2 id="reshipiname"><c:out value="${reshipi.name}" /></h2><br />
+         <div id="radius">
           <p>作り方<br />
-          <c:out value="${reshipi.content}" /></p>
-          <p>作成日時 :<fmt:formatDate value="${reshipi.created_at}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
+          <c:out value="${reshipi.content}" /></p><br /><br />
+          <p id="format">作成日時 :<fmt:formatDate value="${reshipi.created_at}" pattern="yyyy-MM-dd" /></p>
+         </div>
 
+         <p><c:out value="${picture.reshipi_id}" /></p>
+
+
+
+         <div id="ran">
           <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p><br /><br />
+         </div>
+         <div id="ran2">
           <p><a href="${pageContext.request.contextPath}/edit?id=${reshipi.id}">編集する</a></p>
+         </div>
          </c:when>
         <c:otherwise>
             <h2>お探しのデータは見つかりませんでした</h2>
         </c:otherwise>
        </c:choose>
+      </body>
      </c:param>
 </c:import>
 

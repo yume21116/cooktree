@@ -37,7 +37,7 @@ public class Filter implements javax.servlet.Filter {
 	           response.setCharacterEncoding("UTF-8");
 
 		// pass the request along the filter chain
-		chain.doFilter(request, response);
+	    chain.doFilter(request, response);
 	}
 
 	/**

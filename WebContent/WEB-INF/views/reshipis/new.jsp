@@ -4,9 +4,10 @@
    <c:param name="content">
        <h2>レシピ新規作成ページ</h2>
 
-       <form method="POST" action="${pageContext.request.contextPath}/create">
+       <form method="POST" action="${pageContext.request.contextPath}/create" enctype="multipart/form-data">
            <c:import url="_form.jsp" />
        </form>
+
 
        <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
    </c:param>
