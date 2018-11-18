@@ -3,13 +3,14 @@
 
 
  body {
+    height: 100%;
 	background-color:rgb(255,240,200);
     color: #333333;
     font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
-
 }
 
  #header{
+    font-family:cursive;
     width:100%;
     height:30%;
     background-color: rgb(100,180,120);
@@ -25,6 +26,7 @@
   #test2 a{
     color:rgb(255,255,255);
     font-size:20px;
+    font-family:cursive;
     float: right;
     padding-right: 100px;
     padding-top: 25px;
@@ -33,8 +35,6 @@
  h1{
     display:inline;
  }
-
-
 
  #content {
    font-family:Yu Gothic;
@@ -51,9 +51,14 @@ a {
 
 h2{
    font-size:30px;
-   font-family:Yu Gothic;
-
 }
+
+#reshipi {
+	font-family:cursive;
+	 font-size:30px;
+}
+
+
 
  #form {
     font-family:Yu Gothic;
@@ -90,6 +95,12 @@ h2{
     text-align:right;
  }
 
+ #picture {
+    border-radius: 30px;
+    float:left;
+    margin-top:30px;
+ }
+
  #ran p a {
      clear:both;
      background-color:rgb(250,250,250);
@@ -122,4 +133,6 @@ h2{
     height:40px;
     background-color:rgb(100,180,120);
  }
+
+
 

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -24,6 +25,7 @@ import models.Reshipi;
 import models.validators.ReshipiValidator;
 import utils.DBUtil;
 
+
 @WebServlet("/create")
 @MultipartConfig(maxFileSize = 20971520, maxRequestSize = 20971520, fileSizeThreshold = 1048576)
 public class CreateServlet extends HttpServlet {
@@ -33,13 +35,11 @@ public class CreateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String _token = getParamVal(request.getPart("_token")); // = (String) request.getParameter("_token");
-
-
-
         if (_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
             Reshipi r = new Reshipi();
+            Picture p = new Picture();
 
             String name = getParamVal(request.getPart("name")); // = request.getParameter("name");
             r.setName(name);
@@ -51,24 +51,12 @@ public class CreateServlet extends HttpServlet {
             r.setCreated_at(currentTime);
             r.setUpdated_at(currentTime);
 
-            List<String> errors = ReshipiValidator.validate(r);
-            if (errors.size() > 0) {
-                em.close();
+            String file_name = getParamVal(request.getPart("file_name"));
+            p.setFile_name(file_name);
 
-                request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("content", r);
-                request.setAttribute("errors", errors);
+            p.setReshipi_id(r);
 
-                response.sendRedirect(request.getContextPath() + "/index");
-                return;
-            } else {
-                em.getTransaction().begin();
-                em.persist(r);
-                em.getTransaction().commit();
-                request.getSession().setAttribute("flush", "登録が完了しました");
-                em.close();
 
-            }
 
             //画像フォームから受け取った画像処理
             request.setCharacterEncoding("UTF-8");
@@ -81,26 +69,33 @@ public class CreateServlet extends HttpServlet {
 
                 part.write(getServletContext().getRealPath("/images") + "/" + f_name);
                 response.getWriter().append("アップロード:").append(f_name);
+                p.setFile_name(f_name);
                 }
 
             }
 
+            List<String> errors = ReshipiValidator.validate(r,p);
+            if (errors.size() > 0) {
+                em.close();
+
+                request.setAttribute("_token", request.getSession().getId());
+                request.setAttribute("content", r);
+                request.setAttribute("errors", errors);
+
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reshipis/new.jsp");
+                rd.forward(request, response);
+            } else {
+                em.getTransaction().begin();
+                em.persist(r);
+                em.persist(p);
+                em.getTransaction().commit();
+                request.getSession().setAttribute("flush", "登録が完了しました");
+                em.close();
+            }
+
         }
 
-
-        Picture p = new Picture();
-
-        String file_name = getParamVal(request.getPart("file_name"));
-        p.setFile_name(file_name);
-
-        Reshipi reshipi_id = getParamVal(request.getPart("reshipi_id"));
-        p.setReshipi_id(reshipi_id);
-
-        Integer id = getParmVal(request.getPart("id"));
-        p.setId(id);
-
         response.sendRedirect(request.getContextPath() + "/index");
-
     }
 
     private String getFileName(Part part) {

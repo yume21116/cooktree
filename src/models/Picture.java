@@ -20,7 +20,15 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "GetPictureCount",
             query = "SELECT COUNT(p) FROM Picture AS p"
-          )
+            ),
+    @NamedQuery(
+            name = "GetReshipi_id",
+            query = "SELECT p FROM Picture AS p WHERE p.reshipi_id  = :reshipi_id"
+            ),
+    @NamedQuery(
+            name = "GetMyAllPictures",
+            query = "SELECT p FROM Picture AS p WHERE p.reshipi_id  = :reshipi_id Order BY p.reshipi_id.id DESC"
+                    ),
 })
 @Entity
 public class Picture {

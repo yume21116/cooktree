@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Picture;
 import models.Reshipi;
 import utils.DBUtil;
 
@@ -36,9 +38,17 @@ public class ShowSevlet extends HttpServlet {
 
 		Reshipi r = em.find(Reshipi.class, Integer.parseInt(request.getParameter("id")));
 
+
+		List<Picture> my_p = em.createNamedQuery("GetMyAllPictures",Picture.class)
+		        .setParameter("reshipi_id",r)
+		        .getResultList();
+
+
 		em.close();
 
+		request.setAttribute("my_p", my_p);
 		request.setAttribute("reshipi", r);
+
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reshipis/show.jsp");
 		rd.forward(request, response);

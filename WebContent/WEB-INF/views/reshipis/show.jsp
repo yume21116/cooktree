@@ -16,8 +16,9 @@
           <p id="format">作成日時 :<fmt:formatDate value="${reshipi.created_at}" pattern="yyyy-MM-dd" /></p>
          </div>
 
-         <p><c:out value="${picture.reshipi_id}" /></p>
-
+         <c:forEach var="pic" items="${my_p}">
+         <p><img id ="picture" style="width: 50%; height: 50%" src="images/${pic.file_name}"></p>
+         </c:forEach>
 
 
          <div id="ran">
@@ -26,6 +27,7 @@
          <div id="ran2">
           <p><a href="${pageContext.request.contextPath}/edit?id=${reshipi.id}">編集する</a></p>
          </div>
+
          </c:when>
         <c:otherwise>
             <h2>お探しのデータは見つかりませんでした</h2>

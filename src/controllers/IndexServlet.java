@@ -47,6 +47,11 @@ public class IndexServlet extends HttpServlet {
 
     request.setAttribute("reshipis", reshipis);
     request.setAttribute("pictures", pictures);
+    if(request.getSession().getAttribute("flush") != null){
+        request.setAttribute("flush", request.getSession().getAttribute("flush"));
+        request.getSession().removeAttribute("flush");
+
+    }
 
     RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reshipis/index.jsp");
     rd.forward(request,response);

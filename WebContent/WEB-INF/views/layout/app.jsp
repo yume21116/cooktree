@@ -15,7 +15,7 @@
              <div id="header">
               <div id="header_menu">
                   <span id="test1"><a href="<c:url value='/index' />">CookTree</a></span>
-                  <span id="test2"><a href="${pageContext.request.contextPath}/new">新規レシピの投稿</a></span>
+                  <span id="test2"><a href="${pageContext.request.contextPath}/new">New Reshipi</a></span>
               </div>
            </div>
 

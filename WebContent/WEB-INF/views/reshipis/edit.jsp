@@ -6,7 +6,7 @@
          <c:when test="${reshipi != null}">
           <h2>${reshipi.name} の編集ページ</h2>
 
-          <form method="POST" action="${pageContext.request.contextPath}/update">
+          <form method="POST" action="${pageContext.request.contextPath}/update" enctype="multipart/form-data">
                <c:import url="_form.jsp" />
           </form>
           <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
