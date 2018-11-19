@@ -91,11 +91,13 @@ public class CreateServlet extends HttpServlet {
                 em.getTransaction().commit();
                 request.getSession().setAttribute("flush", "登録が完了しました");
                 em.close();
+
+                response.sendRedirect(request.getContextPath() + "/index");
             }
 
         }
 
-        response.sendRedirect(request.getContextPath() + "/index");
+
     }
 
     private String getFileName(Part part) {

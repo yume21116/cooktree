@@ -18,7 +18,7 @@ import javax.persistence.Table;
             query = "SELECT r FROM Reshipi AS r ORDER BY r.id DESC"
             ),
     @NamedQuery(
-            name = "GetReshipiCount",
+            name = "GetReshipisCount",
             query = "SELECT COUNT(r) FROM Reshipi AS r"
             )
 

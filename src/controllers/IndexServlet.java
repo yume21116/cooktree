@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Picture;
 import models.Reshipi;
 import utils.DBUtil;
 
@@ -36,17 +35,30 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     EntityManager em = DBUtil.createEntityManager();
 
+    int page;
+    try{
+        page = Integer.parseInt(request.getParameter("page"));
+    }catch(Exception e){
+        page = 1;
+    }
     List<Reshipi> reshipis = em.createNamedQuery("getAllReshipis",Reshipi.class)
-                             .getResultList();
-    List<Picture> pictures = em.createNamedQuery("getAllPictures",Picture.class)
-                             .getResultList();
+                                .setFirstResult(5 * (page - 1))
+                                .setMaxResults(5)
+                                .getResultList();
+
+    long reshipis_count = (long)em.createNamedQuery("GetReshipisCount",Long.class)
+                                    .getSingleResult();
+
+
     response.getWriter().append(Integer.valueOf(reshipis.size()).toString());
-    response.getWriter().append(Integer.valueOf(pictures.size()).toString());
+
 
     em.close();
 
     request.setAttribute("reshipis", reshipis);
-    request.setAttribute("pictures", pictures);
+    request.setAttribute("reshipis_count", reshipis_count);
+    request.setAttribute("page", page);
+
     if(request.getSession().getAttribute("flush") != null){
         request.setAttribute("flush", request.getSession().getAttribute("flush"));
         request.getSession().removeAttribute("flush");

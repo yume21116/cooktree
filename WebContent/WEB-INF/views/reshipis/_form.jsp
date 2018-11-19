@@ -22,8 +22,6 @@
 
      <input type="file" name="file_name"  value="${picture.reshipi_id}" /><br />
 
-
-
       <input type="hidden" name="reshipi_id" value="${picture.reshipi_id}" /><br />
      <input type="hidden" name="_token" value="${_token}" />
      <button type="submit">投稿</button>
